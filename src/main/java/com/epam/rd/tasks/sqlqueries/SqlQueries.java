@@ -8,76 +8,76 @@ public class SqlQueries {
     //language=HSQLDB
     String select01 =
         "SELECT " +
-            "ID, LASTNAME, SALARY " +
+            "id, lastname, salary " +
         "FROM " +
-            "EMPLOYEE " +
+            "employee " +
         "ORDER BY " +
-            "LASTNAME";
+            "lastname";
 
     //Select employees having no more than 5 characters in last name sorted by last name in ascending order
     //language=HSQLDB
     String select02 =
         "SELECT " +
-            "ID, LASTNAME, SALARY " +
+            "id, lastname, salary " +
         "FROM " +
-            "EMPLOYEE " +
+            "employee " +
         "WHERE " +
-            "LENGTH(LASTNAME) <= 5 " +
+            "LENGTH(lastname) <= 5 " +
         "ORDER BY " +
-            "LASTNAME";
+            "lastname";
 
     //Select employees having salary no less than 2000 and no more than 3000
     //language=HSQLDB
     String select03 =
         "SELECT " +
-            "ID, LASTNAME, SALARY " +
+            "id, lastname, salary " +
         "FROM " +
-            "EMPLOYEE " +
+            "employee " +
         "WHERE " +
-            "(SALARY >= 2000 " +
-            "AND SALARY <= 3000)";
+            "(salary >= 2000 " +
+            "AND salary <= 3000)";
 
     //Select employees having salary no more than 2000 or no less than 3000
     //language=HSQLDB
     String select04 =
         "SELECT " +
-            "ID, LASTNAME, SALARY " +
+            "id, lastname, salary " +
         "FROM " +
-            "EMPLOYEE " +
+            "employee " +
         "WHERE " +
-            "(SALARY <= 2000 " +
-            "OR SALARY >= 3000)";
+            "(salary <= 2000 " +
+            "OR salary >= 3000)";
 
     //Select all employees assigned to departments and corresponding department
     //language=HSQLDB
     String select05 =
         "SELECT " +
-            "LASTNAME, SALARY, NAME " +
+            "lastname, salary, department.name " +
         "FROM " +
-            "EMPLOYEE " +
+            "employee " +
                 "JOIN " +
-            "DEPARTMENT ON " +
-                "EMPLOYEE.DEPARTMENT = DEPARTMENT.ID";
+            "department ON " +
+                "employee.department = department.id";
 
     //Select all employees and corresponding department name if there is one.
     //Name column containing name of the department "depname".
     //language=HSQLDB
     String select06 =
         "SELECT " +
-            "LASTNAME, SALARY, NAME AS DEPNAME " +
+            "lastname, salary, department.name AS depname " +
         "FROM " +
-            "EMPLOYEE " +
+            "employee " +
                 "LEFT JOIN " +
-            "DEPARTMENT ON " +
-                "EMPLOYEE.DEPARTMENT = DEPARTMENT.ID";
+            "department ON " +
+                "employee.department = department.id";
 
     //Select total salary pf all employees. Name it "total".
     //language=HSQLDB
     String select07 =
         "SELECT " +
-            "SUM(SALARY) AS TOTAL " +
+            "SUM(salary) AS total " +
         "FROM " +
-            "EMPLOYEE";
+            "employee";
 
     //Select all departments and amount of employees assigned per department
     //Name column containing name of the department "depname".
@@ -85,27 +85,27 @@ public class SqlQueries {
     //language=HSQLDB
     String select08 =
         "SELECT " +
-            "COUNT (*) AS STAFF_SIZE, " +
-            "NAME AS DEPNAME " +
+            "COUNT (*) AS staff_size, " +
+            "department.name AS depname " +
         "FROM " +
-            "EMPLOYEE " +
-                "JOIN DEPARTMENT ON " +
-            "EMPLOYEE.DEPARTMENT = DEPARTMENT.ID " +
+            "employee " +
+                "JOIN department ON " +
+            "employee.department = department.id " +
         "GROUP BY " +
-            "DEPARTMENT.NAME";
+            "department.name";
 
     //Select all departments and values of total and average salary per department
     //Name column containing name of the department "depname".
     //language=HSQLDB
     String select09 =
         "SELECT " +
-            "SUM(SALARY) AS TOTAL, AVG(SALARY) AS AVERAGE, NAME AS DEPNAME " +
+            "SUM(salary) AS total, AVG(salary) AS average, department.name AS depname " +
         "FROM " +
-            "EMPLOYEE " +
-                "JOIN DEPARTMENT ON " +
-            "EMPLOYEE.DEPARTMENT = DEPARTMENT.ID " +
+            "employee " +
+                "JOIN department ON " +
+            "employee.department = department.id " +
         "GROUP BY " +
-            "DEPARTMENT.NAME";
+            "department.name";
 
     //Select lastnames of all employees and lastnames of their managers if an employee has a manager.
     //Name column containing employee's lastname "employee".
@@ -113,9 +113,9 @@ public class SqlQueries {
     //language=HSQLDB
     String select10 =
         "SELECT " +
-            "E.LASTNAME AS EMPLOYEE, M.LASTNAME AS MANAGER " +
+            "e.lastname AS employee, m.lastname AS manager " +
         "FROM " +
-            "EMPLOYEE E " +
-                "LEFT JOIN EMPLOYEE M ON " +
-            "E.MANAGER = M.ID";
+            "employee e " +
+                "LEFT JOIN employee m ON " +
+            "e.manager = m.id";
 }
